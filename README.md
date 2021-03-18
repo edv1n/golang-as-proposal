@@ -46,7 +46,7 @@ func run2() error {
 
 In this case, `b` will be a value with type `Book`. Since the second returned value is not assigned to LHS, it will be passed to the `as` block. The second value will be assigned to `err`.
 
-## Example X - use `try as` instead of `as` to indicate it will assert if the value of `err` is nil or not
+## Example X - use `try as` instead of `as` to indicate it will assert if the value assigned to RHS is nil or not
 ```go
 
 type Book struct{}
