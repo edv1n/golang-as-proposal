@@ -89,7 +89,9 @@ func run1() {
 
 I am not sure how useful will this be. But I keep this example as one of the use cases.
 
-### Example X - use `try as` instead of `as` to indicate it will assert if the value assigned to RHS is nil or not
+## Other Considerations
+
+### use `try as` instead of `as` to indicate it will assert if the value assigned to RHS is nil or not
 ```go
 
 type Book struct{}
