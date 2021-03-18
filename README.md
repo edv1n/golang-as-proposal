@@ -19,11 +19,11 @@ var1, ...varSecondLast := f() as varN {
 // varN not available here
 ```
 
-The `as` keyword indicats any results not assigned to LHS will be assigned to variable defined after `as`. Currently, the number of variable definable after `as` is limited to one only, but this can be relaxed.
+The `as` keyword indicats any results not assigned to LHS will be assigned to variable defined after `as`. Currently, the number of variable definable after `as` is limited to one only, but this can be relaxed. The code block defined after `as` will only be executed if the value assigned is not `nil`.
 
 ## Example
 
-### Example 1 - function with one return (error)
+### Example 1 - function with one return (error handling)
 
 ```go
 func f1() error {
@@ -68,7 +68,7 @@ func run2() error {
 
 In this case, `b` will contain the first result returned by `f2()`. Since the second returned value is not assigned to LHS, it will be passed to the `as` block. The second value will be assigned to `err`.
 
-### Example 3 - function with one return (non error)
+### Example 3 - function with one return (non error related handling)
 
 ```go
 func f1() *time.Time {
@@ -87,7 +87,7 @@ func run1() {
 }
 ```
 
-I am not sure how useful will this be. But I keep this example as one of the usecases.
+I am not sure how useful will this be. But I keep this example as one of the use cases.
 
 ### Example X - use `try as` instead of `as` to indicate it will assert if the value assigned to RHS is nil or not
 ```go
