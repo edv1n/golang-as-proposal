@@ -1,7 +1,29 @@
 # golang-as-proposal
 Proposal for GO error handling with `as` syntax. This proposal is on brainstorming stage.
 
-## Example 1 - function with one return
+## Syntax Definition
+
+Assume we have a function `f()`
+```go
+func f() (var1, ...varN) { ... }
+```
+
+To use the `as` syntax
+```go
+var1, ...varSecondLast := f() as varN {
+  // varN available here
+  //... code block
+}
+
+// var1, ...varSecondLast available here
+// varN not available here
+```
+
+The `as` keyword indicats any result not assigned to LHS will be assigned to variable defined after `as`. Currently, the number of variable definable after `as` is limited to one only, but this can be relaxed.
+
+## Example
+
+### Example 1 - function with one return (error)
 
 ```go
 func f1() error {
@@ -22,7 +44,7 @@ func run1() error {
 
 This is only useful if we want to execute `f1()` and handle the return value in a scoped block.
 
-## Example 2 - function with two returns
+### Example 2 - function with two returns
 ```go
 
 type Book struct{}
@@ -46,7 +68,28 @@ func run2() error {
 
 In this case, `b` will be a value with type `Book`. Since the second returned value is not assigned to LHS, it will be passed to the `as` block. The second value will be assigned to `err`.
 
-## Example X - use `try as` instead of `as` to indicate it will assert if the value assigned to RHS is nil or not
+### Example 3 - function with one return (non error)
+
+```go
+func f1() *time.Time {
+  //...
+}
+
+func run1() {
+  f1() as t {
+    // this block will only be executed if `t != nil`
+    // `t` is scopped in this block only
+    fmt.Printf("%v", t)
+  }
+  
+  fmt.Printf("%v", t) //compile error, as `t` is scoped in earlier block
+  return nil
+}
+```
+
+I am not sure how useful will this be. But I keep this example as one of the usecases.
+
+### Example X - use `try as` instead of `as` to indicate it will assert if the value assigned to RHS is nil or not
 ```go
 
 type Book struct{}
