@@ -52,7 +52,7 @@ func f3() (Book, error) {
 }
 
 func run3() error {
-  b := f2() try as err {
+  b := try f2() as err {
     // this block will only be executed if `err != nil`
     return err
   }
