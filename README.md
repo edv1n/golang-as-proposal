@@ -1,4 +1,4 @@
-# golang-as-proposal
+# GO (Golang) `as` Syntax Proposal
 Proposal for GO error handling with `as` syntax. This proposal is on brainstorming stage.
 
 ## Syntax Definition
