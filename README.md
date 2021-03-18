@@ -10,6 +10,7 @@ func f1() (error){
 
 func run1() error {
   f1() as err {
+    // this block will only be executed if `err != nil`
     return err
   }
 }
@@ -27,6 +28,7 @@ func f2() (Book, error) {
 
 func run2() error {
   b := f2() as err {
+    // this block will only be executed if `err != nil`
     return err
   }
   
@@ -46,6 +48,7 @@ func f3() (Book, error) {
 
 func run3() error {
   b := f2() try as err {
+    // this block will only be executed if `err != nil`
     return err
   }
 }
