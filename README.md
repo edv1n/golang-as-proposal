@@ -19,7 +19,7 @@ var1, ...varSecondLast := f() as varN {
 // varN not available here
 ```
 
-The `as` keyword indicats any result not assigned to LHS will be assigned to variable defined after `as`. Currently, the number of variable definable after `as` is limited to one only, but this can be relaxed.
+The `as` keyword indicats any results not assigned to LHS will be assigned to variable defined after `as`. Currently, the number of variable definable after `as` is limited to one only, but this can be relaxed.
 
 ## Example
 
@@ -49,7 +49,7 @@ This is only useful if we want to execute `f1()` and handle the return value in 
 
 type Book struct{}
 
-func f2() (Book, error) {
+func f2() (*Book, error) {
   //... some blocks return `nil, errors.New("error")
   return Book{}, nil
 }
@@ -66,7 +66,7 @@ func run2() error {
 }
 ```
 
-In this case, `b` will be a value with type `Book`. Since the second returned value is not assigned to LHS, it will be passed to the `as` block. The second value will be assigned to `err`.
+In this case, `b` will contain the first result returned by `f2()`. Since the second returned value is not assigned to LHS, it will be passed to the `as` block. The second value will be assigned to `err`.
 
 ### Example 3 - function with one return (non error)
 
