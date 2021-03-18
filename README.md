@@ -4,7 +4,7 @@ Proposal for GO error handling with `as` syntax. This proposal is on brainstormi
 ## Example 1 - function with one return
 
 ```go
-func f1() (error){
+func f1() error {
   //...
 }
 
@@ -16,8 +16,11 @@ func run1() error {
   }
   
   fmt.Printf("%v", err) //compile error, as `err` is scoped in earlier block
+  return nil
 }
 ```
+
+This is only useful if we want to execute `f1()` and handle the return value in a scoped block.
 
 ## Example 2 - function with two returns
 ```go
@@ -41,7 +44,9 @@ func run2() error {
 }
 ```
 
-## Example 3 - use `try as` instead of `as` to indicate it will assert if the value of `err` is nil or not
+In this case, `b` will be a value with type `Book`. Since the second returned value is not assigned to LHS, it will be passed to the `as` block. The second value will be assigned to `err`.
+
+## Example X - use `try as` instead of `as` to indicate it will assert if the value of `err` is nil or not
 ```go
 
 type Book struct{}
